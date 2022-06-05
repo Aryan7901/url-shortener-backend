@@ -3,15 +3,16 @@ const app = express();
 const cors = require("cors");
 const { body, validationResult } = require("express-validator");
 const bodyParser = require("body-parser");
-const port = process.env.port || 8000;
-const host = process.env.host || "localhost";
+const port = process.env.PORT || 8000;
+const host = process.env.HOST || "localhost";
+const URL = process.env.URL;
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", URL],
   optionsSuccessStatus: 200,
 };
 const mongoose = require("mongoose");
 try {
-  mongoose.connect("mongodb://127.0.0.1:27017/url-shortener");
+  mongoose.connect(process.env.DB || "mongodb://127.0.0.1:27017/url-shortener");
 } catch (err) {
   throw err;
 }
