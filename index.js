@@ -9,7 +9,7 @@ const FRONTEND = process.env.FRONTEND;
 const path = require("path");
 const server = process.env.SERVER || `http://${host}:${port}`;
 const corsOptions = {
-  origin: "https://aryan7901.github.io",
+  origin: ["http://localhost:3000", "https://aryan7901.github.io", FRONTEND],
   optionsSuccessStatus: 200,
 };
 const mongoose = require("mongoose");
