@@ -9,7 +9,7 @@ const FRONTEND = process.env.FRONTEND;
 const path = require("path");
 const server = process.env.SERVER || `http://${host}:${port}`;
 const corsOptions = {
-  origin: ["http://localhost:3000", FRONTEND],
+  origin: ["http://localhost:3000", "https://aryan7901.github.io", FRONTEND],
   optionsSuccessStatus: 200,
 };
 const mongoose = require("mongoose");
@@ -56,7 +56,6 @@ app.get("/:shortUrlId", async (req, res) => {
     return res.status(500).send("Error. Please try again.");
   }
 });
-app.use("", express.static(path.join(__dirname, "/dist")));
 
 app.use((req, res, next) => {
   res.status(500).send("Route not found");
