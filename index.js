@@ -5,9 +5,11 @@ const { body, validationResult } = require("express-validator");
 const bodyParser = require("body-parser");
 const port = process.env.PORT || 8000;
 const host = process.env.HOST || "localhost";
-const URL = process.env.URL;
+const FRONTEND = process.env.FRONTEND;
+const path = require("path");
+
 const corsOptions = {
-  origin: ["http://localhost:3000", URL],
+  origin: ["http://localhost:3000", FRONTEND],
   optionsSuccessStatus: 200,
 };
 const mongoose = require("mongoose");
@@ -54,6 +56,8 @@ app.get("/:shortUrlId", async (req, res) => {
     return res.status(500).send("Error. Please try again.");
   }
 });
+app.use("", express.static(path.join(__dirname, "/dist")));
+
 app.use((req, res, next) => {
   res.status(500).send("Route not found");
 });
