@@ -7,7 +7,7 @@ const port = process.env.PORT || 8000;
 const host = process.env.HOST || "localhost";
 const FRONTEND = process.env.FRONTEND;
 const path = require("path");
-
+const server = process.env.SERVER || `http://${host}:${port}`;
 const corsOptions = {
   origin: ["http://localhost:3000", FRONTEND],
   optionsSuccessStatus: 200,
@@ -39,7 +39,7 @@ app.post("/url", body("url").isURL(), async (req, res) => {
     if (!!requestedUrl)
       return res.status(200).send({ shortUrl: requestedUrl.shortURL });
     const urlKey = utils.generateUrlKey();
-    const shortUrl = `http://${host}:${port}/${urlKey}`;
+    const shortUrl = `${server}/${urlKey}`;
     await URL.save(req.body.url, shortUrl, urlKey);
     return res.status(200).send({ shortUrl });
   } catch (error) {
