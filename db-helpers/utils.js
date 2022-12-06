@@ -1,5 +1,5 @@
 const shortId = require("shortid");
-const url = require("node:url");
+const url = require("url");
 const validateUrl = (url = "") => {
   try {
     console.log(url);
